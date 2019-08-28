@@ -2,6 +2,7 @@
     por parte del servidor.
 */
 import { Router } from 'express';
+import indexController from '../controllers/indexController';
 
 // Clase de rutas base.
 class IndexRouter {
@@ -15,7 +16,7 @@ class IndexRouter {
 
     // Configuración de las rutas que puede utilizar o se exportarán para ser usadas por el servidor.
     config() {
-        this.router.get('/', (req, res) => res.send('Hello World'));
+        this.router.get('/', indexController.index);
     }
 }
 

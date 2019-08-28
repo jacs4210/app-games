@@ -3,9 +3,12 @@
     Application: Tipo de dato para asignar a una variable al ejecutar el método express()
  */
 import express, { Application } from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
 
 // Se importan las rutas configuradas
 import indexRoutes from './routes/indexRoutes';
+import gamesRoutes from './routes/gamesRoutes';
 
 // Clase Server y principal que contiene la configuración personalizada del servidor.
 class Server {
@@ -23,6 +26,14 @@ class Server {
     config(): void {
         // Se configura el puerto por defecto que escuchará el servidor.
         this.app.set('port', process.env.PORT || 3000);
+        // Permite visualizar en consola las peticiones realizadas desde un cliente al servidor.
+        this.app.use(morgan('dev'));
+        // Permite aceptar peticiones desde una aplicación web o movil.
+        this.app.use(cors());
+        // Permite recibir desde una petición cliente, objetos JSON.
+        this.app.use(express.json());
+        // Permite recibir formularios HTTP.
+        this.app.use(express.urlencoded({ extended: false }));
     }
 
     /*  Configuración de las rutas o servicios que procesará el servidor al momento
@@ -31,6 +42,7 @@ class Server {
     routes(): void {
         // Indica las rutas que se van a matricularse en el servidor y que podrá atender.
         this.app.use(indexRoutes);
+        this.app.use('/api/games', gamesRoutes);
     }
 
     // Método que inicia el servidor mediante el método 'listen'
