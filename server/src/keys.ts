@@ -1,9 +1,9 @@
 export default {
     database: {
-        host: 'sql10.freemysqlhosting.net',
-        user: 'sql10303263',
-        password: 'bgP1rrXVmT',
-        database: 'sql10303263',
+        host: 'localhost',
+        user: 'root',
+        password: 'J@iroan5163654',
+        database: 'ng_games_db',
         port: 3306
     }
 }
